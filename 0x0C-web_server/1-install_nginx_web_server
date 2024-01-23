@@ -1,32 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# installs nginx and configures it on a remote server
 
-# Update package list and install nginx with the '-y' flag to assume yes to prompts
-sudo apt-get update
-sudo apt-get install -y nginx
-
-# Create a basic HTML page with "Hello World!" content
-echo "Hello World!" | sudo tee /var/www/html/index.html
-
-# Replace the default Nginx configuration to point to the new HTML page
-sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
-sudo bash -c 'cat > /etc/nginx/sites-available/default <<EOL
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-    index index.html index.htm;
-
-    server_name _;
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-}
-EOL'
-
-# Restart Nginx
-sudo service nginx restart
-
-# Output a message indicating the script has completed
-echo "Nginx installation and configuration complete"
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+service nginx start
