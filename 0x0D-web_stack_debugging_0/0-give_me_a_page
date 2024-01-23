@@ -15,7 +15,7 @@ ENV APACHE_RUN_DIR /var/run/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
 
 # Create a simple HTML file with "Hello Holberton"
-RUN echo "Hello Holberton" > /var/www/html/index.html
+RUN echo "Hello Holberton\n" > /var/www/html/index.html
 
 # Expose port 80
 EXPOSE 80
