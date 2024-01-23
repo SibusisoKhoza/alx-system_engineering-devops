@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # run apache on designated container
 
 sudo apt-get -y update
