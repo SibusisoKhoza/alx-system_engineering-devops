@@ -1,33 +1,32 @@
-#!/usr/bin/env bash
-#install ngix and put holberton inside
+#!/bin/bash
 
-sudo apt-get update -y && \
+# Update package list and install nginx with the '-y' flag to assume yes to prompts
+sudo apt-get update
 sudo apt-get install -y nginx
-if [ $? -eq 0 ]
-then
-    echo -e \
-"http {
-    root /var/www/holberton;
-    index index.html;
-    server {
-        listen 80;
-        location \ {
-        }
+
+# Create a basic HTML page with "Hello World!" content
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Replace the default Nginx configuration to point to the new HTML page
+sudo mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+sudo bash -c 'cat > /etc/nginx/sites-available/default <<EOL
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
     }
 }
-events {
-}" > /etc/nginx/nginx.conf
-    mkdir -p /var/www/holberton
-    echo "hello Holberton School" > \
-	/var/www/holberton/index.html
-    service nginx start
-    if [ $? -ne 0 ]
-    then
-	"Problem starting nginx"
-	exit 1
-    fi
-else
-    echo "Could not install nginx"
-    exit 1
-fi
-exit 0
+EOL'
+
+# Restart Nginx
+sudo service nginx restart
+
+# Output a message indicating the script has completed
+echo "Nginx installation and configuration complete"
