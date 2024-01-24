@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
 # run apache on designated container
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-sudo service nginx start
+sudo service apache2 start
