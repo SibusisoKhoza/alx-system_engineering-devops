@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-# display information about subdomains. Arguments =  domain: type=> string, what=> domain name to audit, mandatory=> yes. Subdomain = type=> string, what=> specific subdomain to audit, mandatory => no. Output: The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
+# print domains and subdomains
 
-if [ "$#" -eq 1 ];
+print_domain_subdomain () {
+    dig "$1" | grep -A1 'ANSWER SECTION:' | sed -r "s/$1./$2/g" | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
+}
+
+if [ "$#" -eq 2 ]
 then
-	subdomain=("www" "lb-01" "web-01" "web-02")
-	for i in "${subdomain[@]}"
-	do
-	dig "$i"."$1"| grep -A1 'ANSWER SECTION:' | awk 'NR==2{SUB=$1; REC=$4; DEST=$5; split(SUB, subx, "."); print "The subdomain " subx[1], "is a " REC, "record and points to " DEST}';
-	done
-elif [ "$#" -eq 2 ];
-then
-	dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | awk 'NR==2{SUB=$1; REC=$4; DEST=$5; split(SUB, subx, "."); print "The subdomain " subx[1], "is a " REC, "record and points to " DEST}';
+    print_domain_subdomain "$2.$1" "$2"
+else
+    print_domain_subdomain "www.$1" "www"
+    print_domain_subdomain "lb-01.$1" "lb-01"
+    print_domain_subdomain "web-01.$1" "web-01"
+    print_domain_subdomain "web-02.$1" "web-02"
 fi
