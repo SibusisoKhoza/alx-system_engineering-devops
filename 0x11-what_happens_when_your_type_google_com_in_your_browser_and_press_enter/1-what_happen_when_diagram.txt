@@ -1,0 +1,2 @@
+1. Image Link from Blog Post: https://media.licdn.com/dms/image/D4D12AQHN3hPI7zdBAg/article-inline_image-shrink_1500_2232/0/1710422394957?e=1715817600&v=beta&t=WRCvfe4XgBc1mZsh_oboN84DwnOTtcyShgzlGyF1M7g
+2. Image Link on Github: https://github.com/SibusisoKhoza/alx-system_engineering-devops/blob/main/0x11-what_happens_when_your_type_google_com_in_your_browser_and_press_enter/1-what_happen_when_diagram.png
