@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Use ssh to connect to your loadbalancer using private key
+ssh -i ~/.ssh/school ubuntu@100.26.175.143
