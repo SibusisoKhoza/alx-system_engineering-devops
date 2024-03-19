@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Use ssh to connect to your web-02 using private key
+ssh -i ~/.ssh/school ubuntu@54.144.134.176
