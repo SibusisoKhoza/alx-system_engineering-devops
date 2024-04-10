@@ -11,7 +11,7 @@ def number_of_subscribers(subreddit):
     return: 0, If an invalid subreddit is given.
     """
 
-    user_agent = 'MyRedditApp/1.0 by /u/Dredouane'
+    user_agent = 'MyRedditApp/1.0 by u/Professional_Dog4632'
 
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {'User-Agent': user_agent}
