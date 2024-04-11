@@ -18,6 +18,7 @@ def number_of_subscribers(subreddit):
         print(test)
         return data['data']['subreddit_subscribers']
     else:
+        print("something wrong")
         return 0
     
 number_of_subscribers("programming")
