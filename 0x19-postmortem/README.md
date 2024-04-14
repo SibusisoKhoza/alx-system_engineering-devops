@@ -1,5 +1,7 @@
 # NGIX Web Application Incident Report
 
+![Server Pleading](https://img.devrant.com/devrant/rant/r_1766089_noFFd.jpg)
+
 ## Issue Summary
 - **Duration:** April 13, 2024, 10:00 AM - April 13, 2024, 12:30 PM (UTC)
 - **Impact:** The web application experienced intermittent downtime, causing service disruption for approximately 25% of users.
